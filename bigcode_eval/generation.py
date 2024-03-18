@@ -253,11 +253,11 @@ def generate_response_from_api(prompt: str, args):
 
 def yield_generation_from_prompts(prompts, task, args):
     for sample, prompt in enumerate(prompts):
-        response = generate_response_from_api(prompt=prompt, args=args)
+        response = [generate_response_from_api(prompt=prompt, args=args) for _ in tqdm(range(args.n_samples))]
         if response is not None:
             if args.postprocess:
                 generation_from_prompt = [
-                    task.postprocess_generation(response["choices"][i]["message"]["content"], sample+args.limit_start)
+                    task.postprocess_generation(response[i]["choices"][0]["message"]["content"], sample+args.limit_start)
                     for i in range(args.n_samples)
                 ]
             else:
