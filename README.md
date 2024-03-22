@@ -214,3 +214,27 @@ We thank EleutherAI for their work on the [lm-evaluation harness](https://github
   year = 2022,
 }
 ```
+
+## Instructions
+
+Clone the repository and perform the following steps: (all commands to be run in this directory)
+
+1. Build on docker with this command
+```
+docker build . -t llm-harness
+```
+
+2. Make sure the LLM is running on LM studio (using the server tab, keep all defaults except the following)
+- in the right area, under advanced options, make sure to select max for GPU layers
+- before clicking start server make sure Apply Prompt Formatting is off.
+- load the required model using the top dropdown before hitting start
+
+3. Create an 'output' directory to save the generations
+
+4. Run docker to begin generating the completions
+```
+docker run --mount type=bind,source=.\output,target=/app/output -it llm-harness python3 main.py --tasks humaneval-unstripped --n_samples 200 --service endpoint --model 'openai/local-model' --generation_only --save_generations --save_generations_path 'output/codellama_q6.json'
+```
+(change the output file name to whatever your model/quantization is).
+
+Note that the generations SHOULD take on average around 8s/prompt, if it A LOT longer than that, try restarting the server, ejecting and reloading the model in LM studio, since it may not be using the GPU correctly.

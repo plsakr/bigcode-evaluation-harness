@@ -8,6 +8,6 @@ WORKDIR /app
 
 RUN test -f /app/generations.json && rm /app/generations.json || true
 
-RUN pip3 install .
+RUN pip3 install -r requirements.txt
 
 CMD ["python3", "main.py"]
