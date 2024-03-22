@@ -84,7 +84,6 @@ class GeneralHumanEval(Task):
             (not used for Humaneval-Task)
         """
         prompt = self.get_prompt(self.dataset["test"][idx])
-        generation = generation[len(prompt) :]
         return prompt + self._stop_at_stop_token(generation, self.stop_words)
 
     def process_results(self, generations, references):
