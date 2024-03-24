@@ -237,4 +237,4 @@ docker run --mount type=bind,source=.\output,target=/app/output -e API_BASE='htt
 ```
 (change the output file name to whatever your model/quantization is).
 
-Note that the generations SHOULD take on average around 8s/prompt, if it A LOT longer than that, try restarting the server, ejecting and reloading the model in LM studio, since it may not be using the GPU correctly.
+Note that the generations SHOULD take on average around 2s/prompt, if it A LOT longer than that, try restarting the server, ejecting and reloading the model in LM studio, since it may not be using the GPU correctly.
