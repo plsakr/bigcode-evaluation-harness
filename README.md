@@ -233,7 +233,7 @@ docker build . -t llm-harness
 
 4. Run docker to begin generating the completions
 ```
-docker run --mount type=bind,source=.\output,target=/app/output -e API_BASE='http://host.docker.internal:1234/v1' -it llm-harness python3 main.py --tasks humaneval-unstripped --n_samples 200 --service endpoint --model 'openai/local-model' --generation_only --save_generations --save_generations_path 'output/codellama_q6.json'
+docker run --mount type=bind,source=.\output,target=/app/output -e API_BASE='http://host.docker.internal:1234/v1' -it llm-harness python3 main.py --tasks humaneval-unstripped --n_samples 200 --temperature 0.2 --service endpoint --model 'openai/local-model' --generation_only --save_generations --save_generations_path 'output/codellama_q6.json'
 ```
 (change the output file name to whatever your model/quantization is).
 
