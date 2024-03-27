@@ -178,7 +178,9 @@ def generate_response_from_api(prompt: str, args):
             top_p=None if not args.do_sample else args.top_p,
             max_tokens=args.max_length_generation, n=args.n_samples,
             messages=[{'content': prompt, 'role': 'user'}],
-            request_timeout=60
+            request_timeout=60,
+            custom_llm_provider="openai",
+            api_base="http://host.docker.internal:1234/v1"
         )
     except Exception as e:
         print(f"Error encountered: {e}. Retrying ... ")
@@ -244,7 +246,9 @@ def generate_response_from_api(prompt: str, args):
             max_tokens=args.max_length_generation, n=args.n_samples,
             messages=[{'content': prompt, 'role': 'user'}],
             request_timeout=60,
-            stop=['\ndef', '\nclass', '\nif', '\n```']
+            stop=['\ndef', '\nclass', '\nif', '\n```'],
+            custom_llm_provider="openai",
+            api_base="http://host.docker.internal:1234/v1"
         )
     except Exception as e:
         print(f"Error encountered: {e}. Retrying ... ")
