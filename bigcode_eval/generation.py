@@ -263,7 +263,7 @@ def yield_generation_from_prompts(prompts, task, args):
                 ]
             else:
                 generation_from_prompt = [
-                    response["choices"][i]["message"]["content"] for i in range(args.n_samples)
+                    response[i]["choices"][0]["message"]["content"] for i in range(args.n_samples)
                 ]
         else:
             print(f'Generation found None. Replacing None by empty string')
